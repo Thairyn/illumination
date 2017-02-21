@@ -4,7 +4,7 @@ using System.Collections;
 [RequireComponent(typeof(SteeringBasics))]
     public class Wander : MonoBehaviour {
 
-    /* The forward offset of the wander zone */
+    /* Offset of the wander zone ahead of agent */
     public float wanderOffset = 1.5f;
 
     /* The radius of the wander zone */
@@ -21,7 +21,6 @@ using System.Collections;
         steeringBasics = GetComponent<SteeringBasics>();
     }
 	
-	void Update () {
-		
-	}
+    
+
 }

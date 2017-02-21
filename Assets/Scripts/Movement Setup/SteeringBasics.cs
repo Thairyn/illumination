@@ -33,7 +33,7 @@ public class SteeringBasics : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    /* Updates the velocity of the current game object by the given linear acceleration */
+ /* STEER behaviour. Steers agent towards target using the given linear acceleration */
     public void steer(Vector3 linearAcceleration)
     {
         rb.velocity += linearAcceleration * Time.deltaTime;
@@ -60,7 +60,7 @@ public class SteeringBasics : MonoBehaviour
         return dvelocity;
     }
 
-    /* Call to seek a target using its current position */
+    /* Call for Agent to seek a target's position given max acceleration */
     public Vector3 seek(Vector3 targetPosition)
     {
         return seek(targetPosition, maxAcceleration);
@@ -78,51 +78,57 @@ public class SteeringBasics : MonoBehaviour
 
     }
 
-/* ARRIVE behaviour. Seeks target until entering landing zone, the slows over time to a stop at target */
+    /* ARRIVE behaviour. Seeks target until entering landing zone, the slows over time to a stop at target */
 
- public Vector3 arrive(Vector3 targetPosition) {
-		/* Get the right direction for the linear acceleration */
-		Vector3 targetVelocity = targetPosition - transform.position;
+    public Vector3 arrive(Vector3 targetPosition)
+    {
+        /* Get the right direction for the linear acceleration */
+        Vector3 targetVelocity = targetPosition - transform.position;
 
-		
-		/* Get the distance to the target */
-		float dist = targetVelocity.magnitude;
-		
-		/* If we are within the stopping radius then stop */
-		if(dist < targetRadius) {
-			rb.velocity = Vector3.zero;
-			return Vector3.zero;
-		}
-		
-		/* Calculate the target speed, full speed at slowRadius distance and 0 speed at 0 distance */
-		float targetSpeed;
-		if(dist > slowRadius) {
-			targetSpeed = maxVelocity;
-		} else {
-			targetSpeed = maxVelocity * (dist / slowRadius);
-		}
-		
-		/* Give targetVelocity the correct speed */
-		targetVelocity.Normalize();
-		targetVelocity *= targetSpeed;
-		
-		/* Calculate the linear acceleration we want */
-		Vector3 acceleration = targetVelocity - new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z);
-		/*
+
+        /* Get the distance to the target */
+        float dist = targetVelocity.magnitude;
+
+        /* If we are within the stopping radius then stop */
+        if (dist < targetRadius)
+        {
+            rb.velocity = Vector3.zero;
+            return Vector3.zero;
+        }
+
+        /* Calculate the target speed, full speed at slowRadius distance and 0 speed at 0 distance */
+        float targetSpeed;
+        if (dist > slowRadius)
+        {
+            targetSpeed = maxVelocity;
+        }
+        else
+        {
+            targetSpeed = maxVelocity * (dist / slowRadius);
+        }
+
+        /* Give targetVelocity the correct speed */
+        targetVelocity.Normalize();
+        targetVelocity *= targetSpeed;
+
+        /* Calculate the linear acceleration we want */
+        Vector3 acceleration = targetVelocity - new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z);
+        /*
 		 Rather than accelerate the character to the correct speed in 1 second, 
 		 accelerate so we reach the desired speed in timeToTarget seconds 
 		 (if we were to actually accelerate for the full timeToTarget seconds).
 		*/
-		acceleration *= 1/timeToTarget;
-		
-		/* Make sure we are accelerating at max acceleration */
-		if(acceleration.magnitude > maxAcceleration) {
-			acceleration.Normalize();
-			acceleration *= maxAcceleration;
-		}
+        acceleration *= 1 / timeToTarget;
 
-		return acceleration;
-	}
+        /* Make sure we are accelerating at max acceleration */
+        if (acceleration.magnitude > maxAcceleration)
+        {
+            acceleration.Normalize();
+            acceleration *= maxAcceleration;
+        }
+
+        return acceleration;
+    }
 
     public Vector3 interpose(Rigidbody target1, Rigidbody target2)
     {
@@ -137,8 +143,5 @@ public class SteeringBasics : MonoBehaviour
 
         return arrive(midPoint);
     }
-
-
-
 
 }
