@@ -4,23 +4,58 @@ using System.Collections;
 [RequireComponent(typeof(SteeringBasics))]
     public class Wander : MonoBehaviour {
 
-    /* Offset of the wander zone ahead of agent */
-    public float wanderOffset = 1.5f;
+    public float wanderRadius = 1.2f;
 
-    /* The radius of the wander zone */
-    public float wanderRadius = 4;
+    public float wanderDistance = 2f;
 
-    /* The rate at which the wander orientation can change */
-    public float wanderRate = 0.4f;
+    //maximum amount of random displacement a second
+    public float wanderJitter = 40f;
 
-    private float wanderOrientation = 0;
+    private Vector3 wanderTarget = new Vector3();
 
     private SteeringBasics steeringBasics;
 
-    void Start () {
+
+    void Start()
+    {
+        //stuff for the wander behavior
+        float theta = Random.value * 2 * Mathf.PI;
+
+        //create a vector to a target position on the wander sphere
+
+        wanderTarget = new Vector3(wanderRadius * Mathf.Cos(theta), wanderRadius * Mathf.Sin(theta), wanderRadius * Mathf.Tan(theta));
+
+        //wanderTarget = Random.insideUnitSphere;
+
         steeringBasics = GetComponent<SteeringBasics>();
     }
-	
-    
+
+    public Vector3 getTarget()
+    {
+        //get the jitter for this time frame
+        float jitter = wanderJitter * Time.deltaTime;
+
+        //add a small random vector to the target's position
+        wanderTarget += new Vector3(Random.Range(-1f, 1f) * jitter, Random.Range(-1f, 1f) * jitter, Random.Range(-1f, 1f) * jitter);
+        wanderTarget += wanderTarget * jitter;
+
+        //make the wanderTarget fit on the wander circle again
+        wanderTarget.Normalize();
+        wanderTarget *= wanderRadius;
+
+        //move the target in front of the character
+        Vector3 targetPosition = transform.position + transform.right * wanderDistance + wanderTarget;
+
+        return targetPosition;
+    }
+
+    public Vector3 getSteering(Vector3 targetPosition)
+    {
+
+        //Debug.DrawLine(transform.position, targetPosition);
+
+        return steeringBasics.seek(targetPosition);
+    }
+
 
 }
