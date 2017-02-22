@@ -8,6 +8,8 @@ using System.Collections;
 
     public float wanderDistance = 2f;
 
+    private CollisionAvoidance collisionAvoidance;
+
     //maximum amount of random displacement a second
     public float wanderJitter = 40f;
 
@@ -25,9 +27,8 @@ using System.Collections;
 
         wanderTarget = new Vector3(wanderRadius * Mathf.Cos(theta), wanderRadius * Mathf.Sin(theta), wanderRadius * Mathf.Tan(theta));
 
-        //wanderTarget = Random.insideUnitSphere;
-
         steeringBasics = GetComponent<SteeringBasics>();
+        collisionAvoidance = GetComponent<CollisionAvoidance>();
     }
 
     public Vector3 getTarget()
@@ -51,10 +52,8 @@ using System.Collections;
 
     public Vector3 getSteering(Vector3 targetPosition)
     {
-
-        //Debug.DrawLine(transform.position, targetPosition);
-
-        return steeringBasics.seek(targetPosition);
+        Vector3 targetAvoid = collisionAvoidance.collisionAvoid(targetPosition);
+        return steeringBasics.seek(targetAvoid);
     }
 
 

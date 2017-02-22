@@ -4,23 +4,21 @@ using UnityEngine;
 
 public class Flowers : MonoBehaviour {
 
-    private SteeringBasics steeringBasics;
-
     private float sphereRadius;
 
 	// Use this for initialization
 	void Start () {
-        steeringBasics = GetComponent<SteeringBasics>();
+
     }
 
 
-    public Transform FindFlower() {
+    public Vector3 FindFlower() {
     //check for collision only on flower layer
         int layerMask = 1 << 9;
         bool foundFlower = false;
         sphereRadius = 10;
-        GameObject nearestflower = new GameObject();
-        Transform nearest = nearestflower.transform;
+        Transform nearest;
+        Vector3 flowerpos = new Vector3();
 
         while (foundFlower == false)
         {
@@ -28,23 +26,17 @@ public class Flowers : MonoBehaviour {
             if (Physics.CheckSphere(transform.position, sphereRadius, layerMask))
             {
                 Collider[] hitFlowers = Physics.OverlapSphere(transform.position, sphereRadius, layerMask);
-                nearestflower = hitFlowers[0].gameObject;
-                nearest = nearestflower.transform;
-                Debug.Log("Found flower");
+                nearest = hitFlowers[0].gameObject.transform;
+                flowerpos = nearest.position;
                 foundFlower = true;
             }
             else
             {
+                //increase search area
                 sphereRadius += 10;
-                Debug.Log("Did not Hit");
             }
         }
-        return nearest;
+        return flowerpos;
     }
 
-    public Vector3 SeekFlower() {
-        Transform flower = FindFlower();
-        Vector3 flowerposition = flower.position;
-        return flowerposition;
-    }
 }

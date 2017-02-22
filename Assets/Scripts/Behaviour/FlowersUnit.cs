@@ -15,7 +15,7 @@ public class FlowersUnit : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Vector3 target = flowers.SeekFlower();
+        Vector3 target = flowers.FindFlower();
         Vector3 accel = steeringBasics.arrive(target);
         steeringBasics.steer(accel);
         steeringBasics.lookWhereYoureGoing(target);

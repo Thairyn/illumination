@@ -23,11 +23,9 @@ public class SteeringBasics : MonoBehaviour
     /* The time in which we want to achieve the targetSpeed */
     public float timeToTarget = 0.1f;
 
-
     private Rigidbody rb;
 
 
-    // Use this for initialization
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -48,11 +46,8 @@ public class SteeringBasics : MonoBehaviour
 /* SEEK behavior. Returns steering for the current game object to seek a given target */
     public Vector3 seek(Vector3 targetPosition, float maxSeekAccel)
     {
-        //Get the direction
-        Vector3 dvelocity = targetPosition - transform.position;
-
-        //normalise desired travel vector
-        dvelocity.Normalize();
+        //Get the direction & normalize
+        Vector3 dvelocity = Vector3.Normalize(targetPosition - transform.position);
 
         //Accelerate to the target
         dvelocity *= maxSeekAccel;
@@ -113,11 +108,6 @@ public class SteeringBasics : MonoBehaviour
 
         /* Calculate the linear acceleration we want */
         Vector3 acceleration = targetVelocity - new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z);
-        /*
-		 Rather than accelerate the character to the correct speed in 1 second, 
-		 accelerate so we reach the desired speed in timeToTarget seconds 
-		 (if we were to actually accelerate for the full timeToTarget seconds).
-		*/
         acceleration *= 1 / timeToTarget;
 
         /* Make sure we are accelerating at max acceleration */
@@ -130,18 +120,5 @@ public class SteeringBasics : MonoBehaviour
         return acceleration;
     }
 
-    public Vector3 interpose(Rigidbody target1, Rigidbody target2)
-    {
-        Vector3 midPoint = (target1.position + target2.position) / 2;
-
-        float timeToReachMidPoint = Vector3.Distance(midPoint, transform.position) / maxVelocity;
-
-        Vector3 futureTarget1Pos = target1.position + target1.velocity * timeToReachMidPoint;
-        Vector3 futureTarget2Pos = target2.position + target2.velocity * timeToReachMidPoint;
-
-        midPoint = (futureTarget1Pos + futureTarget2Pos) / 2;
-
-        return arrive(midPoint);
-    }
-
+    
 }

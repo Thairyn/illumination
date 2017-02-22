@@ -9,17 +9,25 @@ ModelImporter:
     100006: //RootNode
     100008: Left.Wing
     100010: Right.Wing
+    100012: Moth.Mesh
+    100014: Moth.Node
+    100016: Moth.Root
     400000: Butterfly.Mesh
     400002: Butterfly.Node
     400004: Butterfly.Root
     400006: //RootNode
     400008: Left.Wing
     400010: Right.Wing
+    400012: Moth.Mesh
+    400014: Moth.Node
+    400016: Moth.Root
     4300000: Butterfly.Mesh
+    4300002: Moth.Mesh
     7400000: Take 001
     9500000: //RootNode
     11100000: //RootNode
     13700000: Butterfly.Mesh
+    13700002: Moth.Mesh
   materials:
     importMaterials: 1
     materialName: 0

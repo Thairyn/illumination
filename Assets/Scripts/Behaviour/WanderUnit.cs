@@ -19,8 +19,7 @@ public class WanderUnit : MonoBehaviour {
     {
         Vector3 target = wander.getTarget();
         Vector3 accel = wander.getSteering(target);
-       
         steeringBasics.steer(accel);
-        steeringBasics.lookWhereYoureGoing(target);
+        steeringBasics.lookWhereYoureGoing(accel);
     }
 }
