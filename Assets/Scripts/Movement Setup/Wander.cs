@@ -47,13 +47,10 @@ using System.Collections;
         //move the target in front of the character
         Vector3 targetPosition = transform.position + transform.right * wanderDistance + wanderTarget;
 
-        return targetPosition;
-    }
+        //check for collision
+       Vector3 targetAvoid = collisionAvoidance.collisionAvoid(targetPosition);
 
-    public Vector3 getSteering(Vector3 targetPosition)
-    {
-        Vector3 targetAvoid = collisionAvoidance.collisionAvoid(targetPosition);
-        return steeringBasics.seek(targetAvoid);
+        return steeringBasics.seek(targetPosition);
     }
 
 
