@@ -15,7 +15,7 @@ public class Flowers : MonoBehaviour
         //check for collision only on flower layer
         int layerMask = 1 << 8;
         bool foundFlower = false;
-        sphereRadius = 100;
+        sphereRadius = 10;
         GameObject nearestflower = null;
         Transform nearest = null;
 

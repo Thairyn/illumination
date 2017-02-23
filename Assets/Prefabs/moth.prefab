@@ -58,10 +58,9 @@ GameObject:
   - component: {fileID: 114398117779532682}
   - component: {fileID: 114195046667377544}
   - component: {fileID: 114622312535851474}
-  - component: {fileID: 95589905108802224}
   m_Layer: 0
   m_Name: moth
-  m_TagString: Untagged
+  m_TagString: moth
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -210,23 +209,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!95 &95589905108802224
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1349454676185994}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d18ec6716765336488f52fd609558e6b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!111 &111128325617079516
 Animation:
   m_ObjectHideFlags: 1
@@ -276,8 +258,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxVelocity: 3
-  maxAcceleration: 4.5
-  targetRadius: 0.005
+  maxAcceleration: 5
+  targetRadius: 0.1
   slowRadius: 1
   timeToTarget: 0.1
 --- !u!114 &114478581633688980
@@ -317,7 +299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxLookAhead: 5
-  maxAvoidForce: 40
+  maxAvoidForce: 20
 --- !u!135 &135822757164350026
 SphereCollider:
   m_ObjectHideFlags: 1
