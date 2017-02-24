@@ -6,6 +6,10 @@ On launch, a number of moths are spawned from the prophecy bowl before the playe
 
 To interact with the scene, players can choose to ask the bowl in front of them for a prophecy (on click), or to look around and observe the behaviour of the moths (reacting to the current prophecy state).
 
+
+===========
+
+
 BEHAVIOURS:
 
 SEEK / STEER - finds the linear acceleration between the moth and a given target. {BasicSteeringBehaviours script}
@@ -18,9 +22,16 @@ WANDER - supplies the moth with a moving target, generated on the surface of a s
 
 FIND FLOWER - search an incrementally increasing area around the moth for a Flower collider, and then fetches its position as new target. {Flowers and FlowersUnit scripts}
 
+
+===========
+
+
 INTERACTION:
 
 As there are only two active states to test, players currently toggle the moths between modes by receiving a prophecy in the bowl in front of them. 
+
+
+===========
 
 
 FUTURE WORK:
