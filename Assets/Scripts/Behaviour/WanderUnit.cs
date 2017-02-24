@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WanderUnit : MonoBehaviour {
+public class WanderUnit : MonoBehaviour
+{
 
     private SteeringBasics steeringBasics;
     private Wander wander;
@@ -17,8 +18,10 @@ public class WanderUnit : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        Vector3 accel = wander.getTarget();
+        Vector3 target = wander.getTarget();
+        Vector3 accel = wander.getSteering(target);
+
         steeringBasics.steer(accel);
-        steeringBasics.lookWhereYoureGoing(accel);
+        steeringBasics.lookWhereYoureGoing(target);
     }
 }

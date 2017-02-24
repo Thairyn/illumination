@@ -25,7 +25,8 @@ public class CollisionAvoidance : MonoBehaviour
         Vector3 steeravoid;
         Ray sweep = new Ray(rb.transform.position, target);
 
-        if (LineIntersects(ahead) == true){
+        if (LineIntersects(ahead) == true)
+        {
             Physics.Raycast(sweep, out hit, maxLookAhead);
             target += hit.normal * maxAvoidForce;
             steeravoid = target;

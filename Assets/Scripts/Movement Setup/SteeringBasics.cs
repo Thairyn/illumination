@@ -1,9 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-/* A helper class for steering a game object in 2D */
-using System.Collections.Generic;
-
 
 [RequireComponent(typeof(Rigidbody))]
 public class SteeringBasics : MonoBehaviour
@@ -46,8 +43,9 @@ public class SteeringBasics : MonoBehaviour
 /* SEEK behavior. Returns steering for the current game object to seek a given target */
     public Vector3 seek(Vector3 targetPosition, float maxSeekAccel)
     {
+        Vector3 dvelocity = Vector3.zero;
         //Get the direction & normalize
-        Vector3 dvelocity = Vector3.Normalize(targetPosition - transform.position);
+        dvelocity = Vector3.Normalize(targetPosition - transform.position);
 
         //Accelerate to the target
         dvelocity *= maxSeekAccel;
@@ -107,7 +105,7 @@ public class SteeringBasics : MonoBehaviour
         targetVelocity *= targetSpeed;
 
         /* Calculate the linear acceleration we want */
-        Vector3 acceleration = targetVelocity - new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z);
+        Vector3 acceleration = targetVelocity + new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z);
         acceleration *= 1 / timeToTarget;
 
         /* Make sure we are accelerating at max acceleration */

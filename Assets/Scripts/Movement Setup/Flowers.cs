@@ -1,24 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
-public class Flowers : MonoBehaviour {
+[RequireComponent(typeof(SteeringBasics))]
+public class Flowers : MonoBehaviour
+{
 
     private float sphereRadius;
+    public bool foundFlower;
 
-	// Use this for initialization
-	void Start () {
-
+    void Start() {
+        foundFlower = false;
     }
 
 
-    public Vector3 FindFlower() {
-    //check for collision only on flower layer
-        int layerMask = 1 << 9;
-        bool foundFlower = false;
+    public Transform FindFlower()
+    {
+        //check for collision only on flower layer
+        int layerMask = 1 << 8;
         sphereRadius = 10;
-        Transform nearest;
-        Vector3 flowerpos = new Vector3();
+        GameObject nearestflower = null;
+        Transform nearest = null;
 
         while (foundFlower == false)
         {
@@ -26,17 +27,24 @@ public class Flowers : MonoBehaviour {
             if (Physics.CheckSphere(transform.position, sphereRadius, layerMask))
             {
                 Collider[] hitFlowers = Physics.OverlapSphere(transform.position, sphereRadius, layerMask);
-                nearest = hitFlowers[0].gameObject.transform;
-                flowerpos = nearest.position;
+                int getFlower = Random.Range(0, (hitFlowers.Length - 1));
+                nearestflower = hitFlowers[getFlower].gameObject;
+                nearest = nearestflower.transform;
                 foundFlower = true;
             }
             else
             {
-                //increase search area
                 sphereRadius += 10;
             }
         }
-        return flowerpos;
+        return nearest;
     }
 
+
+    public Vector3 SeekFlower()
+    {
+        Transform flower = FindFlower();
+        Vector3 flowerposition = flower.position;
+        return flowerposition;
+    }
 }

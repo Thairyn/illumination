@@ -6,10 +6,10 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Whitis
-  m_Shader: {fileID: 7, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
+  m_Name: Water 1
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: _EMISSION _SPECULARHIGHLIGHTS_OFF
+  m_LightmapFlags: 1
   m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
@@ -60,7 +60,7 @@ Material:
     - first:
         name: _OcclusionMap
       second:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: fc00ec05a89da4ff695a4273715cd5ce, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -86,11 +86,17 @@ Material:
         name: _EmissionScaleUI
       second: 0
     - first:
+        name: _GlossMapScale
+      second: 1
+    - first:
         name: _Glossiness
-      second: 0.5
+      second: 1
+    - first:
+        name: _GlossyReflections
+      second: 1
     - first:
         name: _Metallic
-      second: 0
+      second: 1
     - first:
         name: _Mode
       second: 0
@@ -99,7 +105,16 @@ Material:
       second: 1
     - first:
         name: _Parallax
-      second: 0.02
+      second: 0.0335
+    - first:
+        name: _Shininess
+      second: 0.471
+    - first:
+        name: _SmoothnessTextureChannel
+      second: 0
+    - first:
+        name: _SpecularHighlights
+      second: 0
     - first:
         name: _SrcBlend
       second: 1
@@ -112,10 +127,13 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 1, g: 0.9602434, b: 0.7941176, a: 1}
+      second: {r: 0.0058390982, g: 0, b: 0.203, a: 1}
     - first:
         name: _EmissionColor
-      second: {r: 0, g: 0, b: 0, a: 1}
+      second: {r: 0.75, g: 0.75, b: 0.75, a: 1}
     - first:
         name: _EmissionColorUI
       second: {r: 1, g: 1, b: 1, a: 1}
+    - first:
+        name: _SpecColor
+      second: {r: 0.28806227, g: 0.3234101, b: 0.35294116, a: 1}
