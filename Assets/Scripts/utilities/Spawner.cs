@@ -20,7 +20,7 @@ public class Spawner : MonoBehaviour {
     void Spawn() {
         if (mothcount < mothstospawn)
         {
-            Quaternion randomRotation = Quaternion.Euler(Random.Range(0, 360), 0, 0);
+            Quaternion randomRotation = Quaternion.Euler(Random.Range(0, 360), 0, Random.Range(0, 360));
             GameObject newmoth = (GameObject)Instantiate(moth, spawn.transform.position, randomRotation);
             moths[mothcount] = newmoth;
             mothcount += 1;

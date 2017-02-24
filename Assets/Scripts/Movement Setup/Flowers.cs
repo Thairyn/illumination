@@ -6,15 +6,17 @@ public class Flowers : MonoBehaviour
 {
 
     private float sphereRadius;
+    public bool foundFlower;
 
-    void Start() { }
+    void Start() {
+        foundFlower = false;
+    }
 
 
     public Transform FindFlower()
     {
         //check for collision only on flower layer
         int layerMask = 1 << 8;
-        bool foundFlower = false;
         sphereRadius = 10;
         GameObject nearestflower = null;
         Transform nearest = null;
@@ -25,14 +27,14 @@ public class Flowers : MonoBehaviour
             if (Physics.CheckSphere(transform.position, sphereRadius, layerMask))
             {
                 Collider[] hitFlowers = Physics.OverlapSphere(transform.position, sphereRadius, layerMask);
-                //int getFlower = Random.Range(0, (hitFlowers.Length - 1));
-                nearestflower = hitFlowers[0].gameObject;
+                int getFlower = Random.Range(0, (hitFlowers.Length - 1));
+                nearestflower = hitFlowers[getFlower].gameObject;
                 nearest = nearestflower.transform;
                 foundFlower = true;
             }
             else
             {
-                sphereRadius += 50;
+                sphereRadius += 10;
             }
         }
         return nearest;

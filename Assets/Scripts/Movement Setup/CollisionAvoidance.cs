@@ -22,12 +22,13 @@ public class CollisionAvoidance : MonoBehaviour
     {
         Vector3 dvelocity = steeringBasics.seek(target);
         Vector3 ahead = rb.position + Vector3.Normalize(dvelocity) * maxLookAhead; // calculate the look ahead vector
-        Vector3 steeravoid = Vector3.zero; ;
+        Vector3 steeravoid;
         Ray sweep = new Ray(rb.transform.position, target);
 
-        if (LineIntersects(ahead) == true){
+        if (LineIntersects(ahead) == true)
+        {
             Physics.Raycast(sweep, out hit, maxLookAhead);
-            target = target + hit.normal * maxAvoidForce;
+            target += hit.normal * maxAvoidForce;
             steeravoid = target;
             Debug.Log(steeravoid);
             return steeravoid;

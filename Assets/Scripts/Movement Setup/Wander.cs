@@ -2,7 +2,8 @@
 using System.Collections;
 
 [RequireComponent(typeof(SteeringBasics))]
-public class Wander : MonoBehaviour {
+public class Wander : MonoBehaviour
+{
 
     public float wanderRadius = 1.2f;
 
@@ -15,9 +16,10 @@ public class Wander : MonoBehaviour {
     private Vector3 targetPosition = Vector3.zero;
 
     private SteeringBasics steeringBasics;
+    private CollisionAvoidance collisionAvoidance;
 
 
-    void Awake()
+    void Start()
     {
         steeringBasics = GetComponent<SteeringBasics>();
         //stuff for the wander behavior
@@ -27,7 +29,7 @@ public class Wander : MonoBehaviour {
 
         wanderTarget = new Vector3(wanderRadius * Mathf.Cos(theta), wanderRadius * Mathf.Sin(theta), wanderRadius * Mathf.Tan(theta));
 
-        //wanderTarget = Random.insideUnitSphere;
+        wanderTarget = Random.insideUnitSphere;
     }
 
     public Vector3 getTarget()
@@ -50,7 +52,8 @@ public class Wander : MonoBehaviour {
     }
 
     public Vector3 getSteering(Vector3 targetPosition)
-    { 
+    {
+        //Vector3 targetAvoid = collisionAvoidance.collisionAvoid(targetPosition);
         return steeringBasics.seek(targetPosition);
 
     }

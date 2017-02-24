@@ -72,7 +72,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4883816362338354}
-  - component: {fileID: 95426883257218812}
   - component: {fileID: 64415719786951852}
   m_Layer: 8
   m_Name: flower04
@@ -150,7 +149,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1535233662821932}
   m_LocalRotation: {x: -0, y: 0.34590518, z: -0, w: -0.9382695}
-  m_LocalPosition: {x: -42.355762, y: -15.697502, z: 73.66446}
+  m_LocalPosition: {x: 45.3, y: 67.49, z: 199.02554}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4350274209995530}
@@ -460,20 +459,3 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 821158ae724ce854e920539f935295b8, type: 3}
---- !u!95 &95426883257218812
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1535233662821932}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 821158ae724ce854e920539f935295b8, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1

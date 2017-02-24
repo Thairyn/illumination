@@ -105,7 +105,7 @@ public class SteeringBasics : MonoBehaviour
         targetVelocity *= targetSpeed;
 
         /* Calculate the linear acceleration we want */
-        Vector3 acceleration = targetVelocity - new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z);
+        Vector3 acceleration = targetVelocity + new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z);
         acceleration *= 1 / timeToTarget;
 
         /* Make sure we are accelerating at max acceleration */
